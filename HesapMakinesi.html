@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        height: 100vb;
+    }
+    header{
+        display: flex;
+        justify-content: center;
+        height: 100%; 
+        align-items: center;
+        flex-direction: column;
+        
+    }  
+    *{
+        margin:0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+        button{
+        width: 90px;
+        height: 50px;
+        background-color: #EB455F;
+        border: 0;
+        cursor: pointer;
+        color: #fcffe7;
+        font-size: 20px;
+        
+    
+    }
+    button:hover{
+        border: 1.7px solid black;
+    }
+    :root{
+    background-color: #2B3467       ;
+    }
+    div.box-1{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 3px;
+        
+    } 
+    input{
+        width: 100%;
+        font-size: 20px;
+        height: 40px;
+        outline:none;
+    }
+    span{
+        position: absolute;
+        font-size: 40px;
+        right: 2px;
+        top: -5px;
+        
+        
+    }
+    .box-2{
+        position: relative;
+        
+    }
+
+    </style>
+</head>
+<body>
+    
+    <header>
+    <div class="box-2">
+    <input type="text">
+    <span></span>
+    <div class="box-1">
+        
+    <button class="button-1" data-value = "0">0</button>
+    <button class="button-2" data-value = "1">1</button>
+    <button class="button-3" data-value = "2">2</button>
+    <button class="button-4" data-value = "3">3</button>
+    <button class="button-5" data-value = "4">4</button>
+    <button class="button-6" data-value = "5">5</button>
+    <button class="button-7" data-value = "6">6</button>
+    <button class="button-8" data-value = "7">7</button>
+    <button class="button-9" data-value = "8">8</button>
+    <button class="button-10" data-value = "9">9</button>
+    <button class="button-11" data-operation = "+">+</button>
+    <button class="button-12" data-operation = "-">-</button>
+    <button class="button-13" data-operation = "*">*</button>
+    <button class="button-14" data-operation = "/">/</button>
+    <button class="button-15" data-equals="=">=</button>
+
+</div>
+</div>
+
+</header>
+
+    <script>
+    let span = document.querySelector("span");
+    let result;
+    let value_1;
+    let value_2;
+    let operation_2 = null;
+    let equalsbutton = document.querySelector("[data-equals]")
+    let operation = null;
+    let input = document.querySelector("input");
+    let buttons = document.querySelectorAll("[data-value]");
+    let operationbuttons = document.querySelectorAll("[data-operation]");
+
+    operationbuttons.forEach(opbutton => opbutton.addEventListener("click" ,() =>{
+    operation = opbutton.innerHTML;
+    operation_2 = operation;
+    value_1 = +input.value;
+    if(value_1 !=0){
+    span.innerHTML = operation;  
+    }
+    input.value = ""
+    }))
+
+
+
+    buttons.forEach(button => button.addEventListener("click", () =>{
+    
+   if(operation_2 != null && operation_2 != undefined){
+        input.value = ""
+        operation_2 = null;
+
+    }
+  
+    input.value += button.innerHTML
+     
+
+    }))
+    
+    equalsbutton.addEventListener("click", () =>{
+        if(operation != null&& operation != undefined && input.value !=""){
+        value_2 = +input.value;
+        console.log(value_1 + value_2);
+        operation_2 = operation;
+        switch(operation){
+        case "+" : result = value_1 + value_2;
+        break;
+        case "-" : result = value_1 - value_2;
+        break;
+        case "*" : result = value_1 * value_2;
+        break;
+        case "/" : result = value_1 / value_2;
+        break;
+        
+
+        }
+        input.value = result;
+        console.log(typeof result)
+        operation = null;
+        span.innerHTML = "";
+
+    }
+    })
+
+
+
+   
+    </script>
+</body>
+</html>
