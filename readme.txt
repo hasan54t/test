@@ -1,1 +1,1 @@
-fdfdsfdsfdsfdsfds
+merhaba bu dosya denemedir
